@@ -7,11 +7,11 @@
     <th>Published At</th>
   </tr>
 
-  <tr>
-    <% @articles.each do |article| %>
+  <% @articles.each do |article| %>
+    <tr>
       <td><%= article.title %></td>
       <td><a href="<%= article.url %>" target="_blank" style="color: black;">Link</a></td>
-      <td><%= article.published_at %></td>
-    <% end %>
-  </tr>
+      <td><%= article&.published_at&.strftime("%F %T") %></td>
+    </tr>
+  <% end %>
 </table>
