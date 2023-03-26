@@ -75,3 +75,4 @@ end
 gem "watir", "~> 7.2"
 gem "pg", "~> 1.4"
 gem "chronic", "~> 0.10.2"
+gem 'whenever', require: false
