@@ -5,7 +5,7 @@ class ArticlesScraperJob < ApplicationJob
     news_website = "https://www.theverge.com/"
     browser = Watir::Browser.new(:chrome, headless: true)
     browser.goto(news_website)
-    # Scroll to the bottom of the page in increments of 1000 pixels
+    # Scroll to the bottom of the page in increments of pixels
     while browser.execute_script('return window.pageYOffset + window.innerHeight') < browser.execute_script('return document.body.scrollHeight')
       browser.execute_script('window.scrollBy(0, 1000);')
     end
