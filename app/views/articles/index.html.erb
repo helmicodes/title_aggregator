@@ -14,7 +14,7 @@
       <td><%= count += 1 %>.</td>
       <td><%= article.title %></td>
       <td><a href="<%= article.url %>" target="_blank" style="color: black;">Link</a></td>
-      <td><%= article&.published_at&.strftime("%F") %></td>
+      <td><%= article&.published_at&.strftime("%F %T") %></td>
     </tr>
   <% end %>
 </table>
