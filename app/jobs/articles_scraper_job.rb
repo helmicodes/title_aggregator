@@ -3,7 +3,11 @@ class ArticlesScraperJob < ApplicationJob
 
   def perform
     news_website = "https://www.theverge.com/"
-    browser = Watir::Browser.new(:chrome)
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--headless')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--no-sandbox')
+    browser = Watir::Browser.new(:chrome, options: options)
     browser.goto(news_website)
     # Scroll to the bottom of the page in increments of pixels
     while browser.execute_script('return window.pageYOffset + window.innerHeight') < browser.execute_script('return document.body.scrollHeight')
