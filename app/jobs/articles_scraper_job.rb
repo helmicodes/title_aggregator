@@ -6,9 +6,7 @@ class ArticlesScraperJob < ApplicationJob
     browser = Watir::Browser.new(:chrome, headless: true)
     browser.goto(news_website)
     # wait until fully load
-    Watir::Wait.until { browser.ready_state == 'complete' }
-    # scroll to bottom
-    browser.execute_script('window.scrollTo(0, document.body.scrollHeight);')
+    sleep(5)
     page = Nokogiri::HTML.parse(browser.html)
 
     # most articles format
