@@ -2,11 +2,13 @@ class ArticlesScraperJob < ApplicationJob
   queue_as :default
 
   def perform
-    Watir.default_timeout = 20
     news_website = "https://www.theverge.com/"
     browser = Watir::Browser.new(:chrome, headless: true)
     browser.goto(news_website)
+    # wait until fully load
     Watir::Wait.until { browser.ready_state == 'complete' }
+    # scroll to bottom
+    browser.execute_script('window.scrollTo(0, document.body.scrollHeight);')
     page = Nokogiri::HTML.parse(browser.html)
 
     # most articles format
