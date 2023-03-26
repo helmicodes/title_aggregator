@@ -2,10 +2,11 @@ class ArticlesScraperJob < ApplicationJob
   queue_as :default
 
   def perform
+    Watir.default_timeout = 20
     news_website = "https://www.theverge.com/"
     browser = Watir::Browser.new(:chrome, headless: true)
     browser.goto(news_website)
-    Watir::Wait.until(timeout: 10) { browser.ready_state == 'complete' }
+    Watir::Wait.until { browser.ready_state == 'complete' }
     page = Nokogiri::HTML.parse(browser.html)
 
     # most articles format
