@@ -9,14 +9,13 @@ bundle exec rake db:migrate
 
 STORAGE_DIR=/opt/render/project/.render
 
-if [[ ! -d $STORAGE_DIR/chrome ]]; then
-  echo "...Downloading Chrome"
-  mkdir -p $STORAGE_DIR/chrome
-  cd $STORAGE_DIR/chrome
-  wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
-  rm ./google-chrome-stable_current_amd64.deb
-  cd $HOME/project/src # Make sure we return to where we were
+if [[ ! -d $STORAGE_DIR/chrome_driver ]]; then
+  echo "...Downloading Chrome Driver"
+  mkdir -p $STORAGE_DIR/chrome_driver
+  cd $STORAGE_DIR/chrome_driver
+  wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+  unzip chromedriver_linux64.zip
+  chmod +x chromedriver
 else
-  echo "...Using Chrome from cache"
+  echo "...Using Chrome Driver from cache"
 fi
