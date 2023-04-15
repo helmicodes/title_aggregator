@@ -2,6 +2,7 @@ class ArticlesScraperJob < ApplicationJob
   queue_as :default
 
   def perform
+    Article.delete_all
     news_website = "https://www.theverge.com/"
     options = Selenium::WebDriver::Chrome::Options.new
     options.add_argument('--headless')
