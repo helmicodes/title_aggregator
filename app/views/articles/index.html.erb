@@ -7,6 +7,8 @@
     <th>URL</th>
     <th>Published At</th>
   </tr>
+  
+  <%= button_to "Rescrape", articles_path, method: :post %>
 
   <% count = 0 %>
   <% @articles.each do |article| %>
